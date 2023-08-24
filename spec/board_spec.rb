@@ -24,4 +24,35 @@ describe Board do
       end
     end
   end
+
+  let(:red_token) { described_class.new.red_token }
+  let(:yellow_token) {described_class.new.yellow_token }
+
+  describe '#update_board' do
+    subject(:board_updated) { described_class.new }
+
+    context 'when updating 1st row of 4th column with red token' do
+      before do
+        board_updated.update_board(0, 3, red_token)
+      end
+
+      xit 'updates the board' do
+        board = board_updated.instance_variable_get(:@board)
+        updated_cell = board[0][3]
+        expect(updated_cell).to eq(red_token)
+      end
+    end
+
+    context 'when updating 2nd row of 6th column with yellow token' do
+      before do
+        board_updated.update_board(1, 5, yellow_token)
+      end
+
+      xit 'updates the board' do
+        board = board_updated.instance_variable_get(:@board)
+        updated_cell = board[1][5]
+        expect(updated_cell).to eq(yellow_token)
+      end
+    end
+  end
 end

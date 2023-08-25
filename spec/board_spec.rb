@@ -28,6 +28,22 @@ describe Board do
   let(:red_token) { described_class.new.red_token }
   let(:yellow_token) { described_class.new.yellow_token }
 
+  describe '#display_board' do
+    subject(:board_displayed) { described_class.new }
+
+    context 'when displaying an empty board' do
+      it 'prints the board' do
+        expect do
+          board_displayed.display_board([
+                                          [' _ ', ' _ ', ' _ ', ' _ '],
+                                          [' _ ', ' _ ', ' _ ', ' _ '],
+                                          [' _ ', ' _ ', ' _ ', ' _ ']
+                                        ])
+        end.to output(" _  _  _  _ \n _  _  _  _ \n _  _  _  _ \n").to_stdout
+      end
+    end
+  end
+
   describe '#update_board' do
     subject(:board_updated) { described_class.new }
 

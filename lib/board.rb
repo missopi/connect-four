@@ -2,6 +2,7 @@
 
 require 'colorize'
 
+# class for creating and updating the board
 class Board
   attr_accessor :board
 
@@ -34,4 +35,7 @@ class Board
     ' ● '.colorize(:color => :yellow)
   end
 end
+
+board = Board.new
+board.update_board(5, 3, board.red_token)
 

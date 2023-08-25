@@ -49,24 +49,24 @@ describe Board do
 
     context 'when updating 1st row of 4th column with red token' do
       before do
-        board_updated.update_board(0, 3, red_token)
+        board_updated.update_board(1, 4, red_token)
       end
 
       it 'updates the board' do
         board = board_updated.instance_variable_get(:@board)
-        updated_cell = board[0][3]
+        updated_cell = board[1][4]
         expect(updated_cell).to eq(red_token)
       end
     end
 
     context 'when updating 2nd row of 6th column with yellow token' do
       before do
-        board_updated.update_board(1, 5, yellow_token)
+        board_updated.update_board(2, 6, yellow_token)
       end
 
       it 'updates the board' do
         board = board_updated.instance_variable_get(:@board)
-        updated_cell = board[1][5]
+        updated_cell = board[2][6]
         expect(updated_cell).to eq(yellow_token)
       end
     end

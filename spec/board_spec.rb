@@ -26,7 +26,7 @@ describe Board do
   end
 
   let(:red_token) { described_class.new.red_token }
-  let(:yellow_token) {described_class.new.yellow_token }
+  let(:yellow_token) { described_class.new.yellow_token }
 
   describe '#update_board' do
     subject(:board_updated) { described_class.new }
@@ -36,7 +36,7 @@ describe Board do
         board_updated.update_board(0, 3, red_token)
       end
 
-      xit 'updates the board' do
+      it 'updates the board' do
         board = board_updated.instance_variable_get(:@board)
         updated_cell = board[0][3]
         expect(updated_cell).to eq(red_token)
@@ -48,7 +48,7 @@ describe Board do
         board_updated.update_board(1, 5, yellow_token)
       end
 
-      xit 'updates the board' do
+      it 'updates the board' do
         board = board_updated.instance_variable_get(:@board)
         updated_cell = board[1][5]
         expect(updated_cell).to eq(yellow_token)

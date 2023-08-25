@@ -8,7 +8,7 @@ describe Board do
     subject(:new_board) { described_class.new }
 
     matcher :be_empty do
-      match { |cell| cell == "\e[0;39;44m ● \e[0m" }
+      match { |cell| cell == ' ● ' }
     end
 
     context 'when a new board is created' do
@@ -39,11 +39,11 @@ describe Board do
       it 'prints the board' do
         expect do
           board_displayed.display_board([
-                                          [' _ ', ' _ ', ' _ ', ' _ '],
-                                          [' _ ', ' _ ', ' _ ', ' _ '],
-                                          [' _ ', ' _ ', ' _ ', ' _ ']
+                                          [' ● ', ' ● ', ' ● ', ' ● '],
+                                          [' ● ', ' ● ', ' ● ', ' ● '],
+                                          [' ● ', ' ● ', ' ● ', ' ● ']
                                         ])
-        end.to output(" _  _  _  _ \n _  _  _  _ \n _  _  _  _ \n").to_stdout
+        end.to output(" ●  ●  ●  ● \n ●  ●  ●  ● \n ●  ●  ●  ● \n").to_stdout
       end
     end
   end

@@ -2,7 +2,6 @@
 
 require_relative '../lib/board'
 
-# class for creating and updating the board
 describe Board do
   describe '#initialize' do
     subject(:new_board) { described_class.new }

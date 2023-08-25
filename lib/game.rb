@@ -10,6 +10,13 @@ class Game
   end
 
   def instructions
+    puts "\n"
+    puts '-------- Connect Four ---------'
+    puts "\n"
+    puts 'Take turns choosing a column on the'
+    puts 'board to drop your coloured token. The'
+    puts 'first person to get four in a row wins.'
+    puts "\n"
   end
 
   def play

@@ -7,10 +7,14 @@ describe Board do
   describe '#initialize' do
     subject(:new_board) { described_class.new }
 
+    matcher :be_empty do
+      match { |cell| cell == "\e[0;39;44m ● \e[0m" }
+    end
+
     context 'when a new board is created' do
       it 'is an empty board' do
         board_cells = new_board.board[0]
-        expect(board_cells).to all(be_nil)
+        expect(board_cells).to all(be_empty)
       end
 
       it 'has 6 rows' do

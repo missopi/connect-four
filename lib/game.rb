@@ -6,7 +6,11 @@ require 'colorize'
 
 # class for the gameplay
 class Game
+  attr_accessor :board, :name, :token
+
   def initialize
+    @board = Board.new
+    @token = [board.red_token, board.yellow_token]
   end
 
   def instructions
@@ -17,6 +21,14 @@ class Game
     puts 'board to drop your coloured token. The'
     puts 'first person to get four in a row wins.'
     puts "\n"
+  end
+
+  def create_player(number)
+    puts "\n"
+    puts "Player #{number}, enter your name:"
+    name = gets.chomp.capitalize!
+    player_token = token[number - 1]
+    Player.new(name, player_token)
   end
 
   def play

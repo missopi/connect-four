@@ -40,7 +40,8 @@ class Game
   def player_input
   end
 
-  def valid_move
+  def valid_move?(player_selection)
+    return true if player_selection.between?(1, 7)
   end
 
   def game_over?

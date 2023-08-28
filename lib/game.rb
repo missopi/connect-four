@@ -9,8 +9,8 @@ class Game
   attr_accessor :board, :name, :token
 
   def initialize
-    #@board = Board.new
-    #@token = [board.red_token, board.yellow_token]
+    @board = Board.new
+    @token = [board.red_token, board.yellow_token]
   end
 
   def instructions
@@ -38,9 +38,9 @@ class Game
 
   def player_input(player)
     puts "\n#{player.name} choose a column from 1 - 7 to drop your token"
-    player_input = gets.chomp - 1
+    player_input = gets.chomp.to_i - 1
   end
-  
+
   def valid_move?(player_input)
     return true if player_input.between?(0, 6)
   end

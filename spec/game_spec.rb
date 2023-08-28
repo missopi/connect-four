@@ -9,9 +9,6 @@ describe Game do
   describe '#player_turn' do
   end
 
-  describe '#player_input' do
-  end
-
   describe '#valid_move' do
     subject(:valid_game_move) { described_class.new }
 
@@ -24,7 +21,7 @@ describe Game do
     end
 
     context 'when a player chooses column 10' do
-      it 'to be false' do
+      it 'to be invalid' do
         choice = 10
         result = valid_game_move.valid_move?(choice)
         expect(result).to be_falsy

@@ -36,9 +36,9 @@ class Game
   def player_turn
   end
 
-  def player_input(player)
-    puts "\n#{player.name} choose a column from 1 - 7 to drop your token"
-    player_input = gets.chomp.to_i - 1
+  def player_input(current_player)
+    puts "\n#{current_player.name} choose a column from 1 - 7 to drop your token"
+    player_input = gets.to_i - 1
   end
 
   def valid_move?(player_input)

@@ -13,6 +13,23 @@ describe Game do
   end
 
   describe '#valid_move' do
+    subject(:valid_game_move) { described_class.new }
+
+    context 'when a player chooses column 5' do
+      xit 'returns true' do
+        choice = 5
+        result = valid_game_move.valid_move?(choice)
+        expect(result).to be true
+      end
+    end
+
+    context 'when a player chooses column 10' do
+      xit 'returns false' do
+        choice = 10
+        result = valid_game_move.valid_move?(choice)
+        expect(result).to be false
+      end
+    end
   end
 
   describe 'game_over?' do

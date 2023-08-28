@@ -10,7 +10,7 @@ class Board
     @board = Array.new(6) { Array.new(7, ' ● ') }
   end
 
-  def display_board(board)
+  def display_board
     puts "\n"
     board.each do |row|
       row.each do |cell|
@@ -24,7 +24,7 @@ class Board
 
   def update_board(row, column, token)
     board[row][column] = token
-    display_board(board)
+    display_board
   end
 
   def red_token

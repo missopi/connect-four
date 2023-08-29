@@ -27,6 +27,9 @@ class Board
     display_board
   end
 
+  def available_row(column)
+  end
+
   def red_token
     ' ● '.colorize(:color => :red)
   end
@@ -34,8 +37,18 @@ class Board
   def yellow_token
     ' ● '.colorize(:color => :yellow)
   end
+
+  def win_horizontal(row, column, token)
+  end
+
+  def win_vertical(row, column, token)
+  end
+
+  def win_diagonal_left(row, column, token)
+  end
+
+  def win_diagonal_right(row, column, token)
+  end
 end
 
-board = Board.new
-board.update_board(5, 3, board.red_token)
 

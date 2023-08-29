@@ -11,6 +11,7 @@ class Game
   def initialize
     @board = Board.new
     @token = [board.red_token, board.yellow_token]
+    @turn = 0
   end
 
   def instructions
@@ -30,6 +31,9 @@ class Game
     Player.new(name, player_token)
   end
 
+  def assign_current_player
+  end
+
   def play
   end
 
@@ -45,15 +49,12 @@ class Game
     return true if player_input.between?(0, 6)
   end
 
+  def space_available?(player_input)
+  end
+
+  def board_full
+  end
+
   def game_over?
-  end
-
-  def win
-  end
-
-  def draw
-  end
-
-  def final_message
   end
 end

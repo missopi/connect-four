@@ -96,10 +96,41 @@ describe Board do
       end
     end
   end
-  
+
   describe '#win_horizontal' do
     subject(:board_horizontal) { described_class.new }
     let(:board) { board_horizontal.instance_variable_get(:@board) }
+
+    context 'when player has a horizontal line of 4' do
+      before do
+        board[2][1] = red_token
+        board[2][2] = red_token
+        board[2][3] = red_token
+        board[2][4] = red_token
+      end
+
+      xit 'returns true' do
+        win = board_horizontal.win_horizontal(2, 1, red_token)
+        expect(win).to be true
+      end
+    end
+
+    context 'when player has a horizontal line of 2' do
+      before do
+        board[2][1] = red_token
+        board[2][2] = red_token
+      end
+
+      xit 'returns falsy' do
+        win = board_horizontal.win_horizontal(2, 1, red_token)
+        expect(win).to be_falsy
+      end
+    end
+  end
+
+  describe '#win_vertical' do
+    subject(:board_vertical) { described_class.new }
+    let(:board) { board_vertical.instance_variable_get(:@board) }
 
     before do
       board[2][5] = red_token
@@ -108,13 +139,14 @@ describe Board do
       board[5][5] = red_token
     end
 
-    context 'when player one has a line of 4' do
+    context 'when player has a vertical line of 4' do
       xit 'returns true' do
-        win = board_horizontal.win_horizontal(2, 5, red_token)
+        win = board_vertical.win_vertical(2, 5, red_token)
         expect(win).to be true
       end
     end
   end
+
   
 end
 

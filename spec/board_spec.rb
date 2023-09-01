@@ -105,9 +105,9 @@ describe Board do
         board[2][2] = red_token
       end
 
-      it 'returns falsy' do
+      it 'returns false' do
         win = board_horizontal.win_horizontal(2, 1, red_token)
-        expect(win).to be_falsy
+        expect(win).to be false
       end
     end
   end

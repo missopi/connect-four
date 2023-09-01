@@ -49,6 +49,7 @@ describe Board do
 
   describe '#update_board' do
     subject(:board_updated) { described_class.new }
+    let(:board) { board_available.instance_variable_get(:@board) }
 
     context 'when updating 1st row of 4th column with red token' do
       before do
@@ -56,7 +57,6 @@ describe Board do
       end
 
       xit 'updates the board' do
-        board = board_updated.instance_variable_get(:@board)
         updated_cell = board[1][4]
         expect(updated_cell).to eq(red_token)
       end
@@ -68,7 +68,6 @@ describe Board do
       end
 
       xit 'updates the board' do
-        board = board_updated.instance_variable_get(:@board)
         updated_cell = board[2][6]
         expect(updated_cell).to eq(yellow_token)
       end
@@ -97,5 +96,8 @@ describe Board do
       end
     end
   end
+
+  
+end
 
 

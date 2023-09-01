@@ -47,34 +47,43 @@ class Board
   def win_horizontal(row, column, token)
     return if column > 3
 
-    board[row][column] == token && board[row][column + 1] == token && board[row][column + 2] == token && board[row][column + 3] == token
+    board[row][column] == token &&
+      board[row][column + 1] == token &&
+      board[row][column + 2] == token &&
+      board[row][column + 3] == token
   end
 
   def win_vertical(row, column, token)
     return if row > 2
 
-    board[row][column] == token && board[row + 1][column] == token && board[row + 2][column] == token && board[row + 3][column] == token
+    board[row][column] == token &&
+      board[row + 1][column] == token &&
+      board[row + 2][column] == token &&
+      board[row + 3][column] == token
   end
 
   def win_diagonal_left(row, column, token)
-    return if column > 3
+    return if row > 2 || column > 3
 
-    board[row][column] == token && board[row + 1][column + 1] == token && board[row + 2][column + 2] == token && board[row + 3][column + 3] == token
+    board[row][column] == token &&
+      board[row + 1][column + 1] == token &&
+      board[row + 2][column + 2] == token &&
+      board[row + 3][column + 3] == token
   end
 
   def win_diagonal_right(row, column, token)
-    return if column < 3
+    return if row > 2 || column < 3
 
-    board[row][column] == token && board[row + 1][column - 1] == token && board[row + 2][column - 2] == token && board[row + 3][column - 3] == token
-  end
-
-  def win_diagonal(row, column, token)
-    return if row > 2
-
-    win_diagonal_left(row, column, token) || win_diagonal_right(row, column, token)
+    board[row][column] == token &&
+      board[row + 1][column - 1] == token &&
+      board[row + 2][column - 2] == token &&
+      board[row + 3][column - 3] == token
   end
 
   def win(row, column, token)
-    win_vertical(row, column, token) || win_horizontal(row, column, token) || win_diagonal(row, column, token)
+    win_vertical(row, column, token) ||
+      win_horizontal(row, column, token) ||
+      win_diagonal_left(row, column, token) ||
+      win_diagonal_right(row, column, token)
   end
 end

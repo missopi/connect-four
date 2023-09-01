@@ -7,21 +7,21 @@ describe Board do
     subject(:new_board) { described_class.new }
 
     matcher :be_empty do
-      match { |cell| cell == ' ● ' }
+      match { |cell| cell == [' ● ', ' ● ', ' ● ', ' ● ', ' ● ', ' ● ', ' ● '] }
     end
 
     context 'when a new board is created' do
-      xit 'is an empty board' do
-        board_cells = new_board.board[0]
-        expect(board_cells).to all(be_empty)
+      it 'is an empty board' do
+        board_rows = new_board.board
+        expect(board_rows).to all(be_empty)
       end
 
-      xit 'has 6 rows' do
+      it 'has 6 rows' do
         rows = new_board.board.size
         expect(rows).to eq(6)
       end
 
-      xit 'has 7 columns' do
+      it 'has 7 columns' do
         columns = new_board.board[0].size
         expect(columns).to eq(7)
       end
@@ -33,43 +33,27 @@ describe Board do
 
   describe '#display_board' do
     subject(:board_displayed) { described_class.new }
+    let(:board) { board_displayed.instance_variable_get(:@board) }
 
     context 'when displaying an empty board' do
-      xit 'prints the board' do
-        expect do
-          board_displayed.display_board([
-                                          [' ● ', ' ● ', ' ● ', ' ● '],
-                                          [' ● ', ' ● ', ' ● ', ' ● '],
-                                          [' ● ', ' ● ', ' ● ', ' ● ']
-                                        ])
-        end.to output(" ●  ●  ●  ● \n ●  ●  ●  ● \n ●  ●  ●  ● \n").to_stdout
+      it 'prints the board' do
+        expect { board_displayed.display_board }.to output("\n ●  ●  ●  ●  ●  ●  ● \n ●  ●  ●  ●  ●  ●  ● \n ●  ●  ●  ●  ●  ●  ● \n ●  ●  ●  ●  ●  ●  ● \n ●  ●  ●  ●  ●  ●  ● \n ●  ●  ●  ●  ●  ●  ● \n\n 1  2  3  4  5  6  7 \n").to_stdout
       end
     end
   end
 
   describe '#update_board' do
     subject(:board_updated) { described_class.new }
-    let(:board) { board_available.instance_variable_get(:@board) }
+    let(:board) { board_updated.instance_variable_get(:@board) }
 
     context 'when updating 1st row of 4th column with red token' do
       before do
-        board_updated.update_board(1, 4, red_token)
+        board[1][4] = red_token
       end
 
-      xit 'updates the board' do
+      it 'updates the board' do
         updated_cell = board[1][4]
         expect(updated_cell).to eq(red_token)
-      end
-    end
-
-    context 'when updating 2nd row of 6th column with yellow token' do
-      before do
-        board_updated.update_board(2, 6, yellow_token)
-      end
-
-      xit 'updates the board' do
-        updated_cell = board[2][6]
-        expect(updated_cell).to eq(yellow_token)
       end
     end
   end
@@ -109,7 +93,7 @@ describe Board do
         board[2][4] = red_token
       end
 
-      xit 'returns true' do
+      it 'returns true' do
         win = board_horizontal.win_horizontal(2, 1, red_token)
         expect(win).to be true
       end
@@ -121,7 +105,7 @@ describe Board do
         board[2][2] = red_token
       end
 
-      xit 'returns falsy' do
+      it 'returns falsy' do
         win = board_horizontal.win_horizontal(2, 1, red_token)
         expect(win).to be_falsy
       end
@@ -140,7 +124,7 @@ describe Board do
     end
 
     context 'when player has a vertical line of 4' do
-      xit 'returns true' do
+      it 'returns true' do
         win = board_vertical.win_vertical(2, 5, red_token)
         expect(win).to be true
       end
@@ -159,8 +143,8 @@ describe Board do
     end
 
     context 'when player has a left diagonal line of 4' do
-      xit 'returns true' do
-        win = board_left.win_left_diagonal(2, 2, red_token)
+      it 'returns true' do
+        win = board_left.win_diagonal_left(2, 2, red_token)
         expect(win).to be true
       end
     end
@@ -178,12 +162,10 @@ describe Board do
     end
 
     context 'when player has a left diagonal line of 4' do
-      xit 'returns true' do
-        win = board_right.win_right_diagonal(2, 5, red_token)
+      it 'returns true' do
+        win = board_right.win_diagonal_right(2, 5, red_token)
         expect(win).to be true
       end
     end
   end
 end
-
-

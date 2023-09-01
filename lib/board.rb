@@ -28,6 +28,12 @@ class Board
   end
 
   def available_row(column)
+    row = 0
+    loop do
+      return row if row == 5 || board[row + 1][column] != ' ● '
+    
+      row += 1
+    end
   end
 
   def red_token

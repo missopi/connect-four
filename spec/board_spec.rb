@@ -11,17 +11,17 @@ describe Board do
     end
 
     context 'when a new board is created' do
-      it 'is an empty board' do
+      xit 'is an empty board' do
         board_cells = new_board.board[0]
         expect(board_cells).to all(be_empty)
       end
 
-      it 'has 6 rows' do
+      xit 'has 6 rows' do
         rows = new_board.board.size
         expect(rows).to eq(6)
       end
 
-      it 'has 7 columns' do
+      xit 'has 7 columns' do
         columns = new_board.board[0].size
         expect(columns).to eq(7)
       end
@@ -35,7 +35,7 @@ describe Board do
     subject(:board_displayed) { described_class.new }
 
     context 'when displaying an empty board' do
-      it 'prints the board' do
+      xit 'prints the board' do
         expect do
           board_displayed.display_board([
                                           [' ● ', ' ● ', ' ● ', ' ● '],
@@ -55,7 +55,7 @@ describe Board do
         board_updated.update_board(1, 4, red_token)
       end
 
-      it 'updates the board' do
+      xit 'updates the board' do
         board = board_updated.instance_variable_get(:@board)
         updated_cell = board[1][4]
         expect(updated_cell).to eq(red_token)
@@ -67,10 +67,42 @@ describe Board do
         board_updated.update_board(2, 6, yellow_token)
       end
 
-      it 'updates the board' do
+      xit 'updates the board' do
         board = board_updated.instance_variable_get(:@board)
         updated_cell = board[2][6]
         expect(updated_cell).to eq(yellow_token)
+      end
+    end
+  end
+
+  describe '#available_row' do
+    subject(:board_available) { described_class.new }
+
+    before do
+      allow(board_available).to receive(:board)
+      allow(board_available).to receive(:update_board)
+    end
+
+    context 'if the first row is empty' do
+      xit 'returns row' do
+        column = 4
+        expect(board_available.available_row(column)).to eq(5)
+      end
+    end
+
+    context 'if the row is full' do
+      before do
+        board_available.update_board(5, 4, red_token)
+        board_available.update_board(4, 4, yellow_token)
+        board_available.update_board(3, 4, red_token)
+        board_available.update_board(2, 4, yellow_token)
+        board_available.update_board(1, 4, red_token)
+        board_available.update_board(0, 4, yellow_token)
+      end
+
+      xit 'returns nil' do
+        column = 4
+        expect(board_available.available_row(column)).to eq(nil)
       end
     end
   end

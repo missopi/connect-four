@@ -147,7 +147,43 @@ describe Board do
     end
   end
 
-  
+  describe '#win_left_diagonal' do
+    subject(:board_left) { described_class.new }
+    let(:board) { board_left.instance_variable_get(:@board) }
+
+    before do
+      board[2][2] = red_token
+      board[3][3] = red_token
+      board[4][4] = red_token
+      board[5][5] = red_token
+    end
+
+    context 'when player has a left diagonal line of 4' do
+      xit 'returns true' do
+        win = board_left.win_left_diagonal(2, 2, red_token)
+        expect(win).to be true
+      end
+    end
+  end
+
+  describe '#win_right_diagonal' do
+    subject(:board_right) { described_class.new }
+    let(:board) { board_right.instance_variable_get(:@board) }
+
+    before do
+      board[2][5] = red_token
+      board[3][4] = red_token
+      board[4][3] = red_token
+      board[5][2] = red_token
+    end
+
+    context 'when player has a left diagonal line of 4' do
+      xit 'returns true' do
+        win = board_right.win_right_diagonal(2, 5, red_token)
+        expect(win).to be true
+      end
+    end
+  end
 end
 
 

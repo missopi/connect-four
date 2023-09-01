@@ -77,31 +77,25 @@ describe Board do
 
   describe '#available_row' do
     subject(:board_available) { described_class.new }
-
-    before do
-      board_available.instance_variable_get(:@board)
-      allow(@board).to receive(:update_board)
-    end
+    let(:board) { board_available.instance_variable_get(:@board) }
 
     context 'if the first row is empty' do
-      xit 'returns row' do
+      it 'returns row' do
         column = 4
         expect(board_available.available_row(column)).to eq(5)
       end
     end
 
     context 'if the first two rows are full' do
-      xit 'returns row three' do
-        board_available.update_board(5, 4, red_token)
-        board_available.update_board(4, 4, yellow_token)
-        expect(board_available.available_row(4)).to eq(3)
+      before do
+        board[4][5] = red_token
+        board[5][5] = red_token
+      end
+
+      it 'returns row three' do
+        expect(board_available.available_row(5)).to eq(3)
       end
     end
   end
-end
 
-RSpec.configure do |config|
-  config.mock_with :rspec do |mocks|
-    mocks.allow_message_expectations_on_nil = true
-  end
-end
+

@@ -96,7 +96,25 @@ describe Board do
       end
     end
   end
+  
+  describe '#win_horizontal' do
+    subject(:board_horizontal) { described_class.new }
+    let(:board) { board_horizontal.instance_variable_get(:@board) }
 
+    before do
+      board[2][5] = red_token
+      board[3][5] = red_token
+      board[4][5] = red_token
+      board[5][5] = red_token
+    end
+
+    context 'when player one has a line of 4' do
+      xit 'returns true' do
+        win = board_horizontal.win_horizontal(2, 5, red_token)
+        expect(win).to be true
+      end
+    end
+  end
   
 end
 

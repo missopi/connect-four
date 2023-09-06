@@ -32,6 +32,7 @@ class Game
   end
 
   def assign_current_player
+    @turn.odd? ? @player_one : @player_two
   end
 
   def play

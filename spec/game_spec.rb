@@ -3,6 +3,28 @@
 require_relative '../lib/game'
 
 describe Game do
+  describe '#assign_current_player' do
+    subject(:current_player) { described_class.new }
+    let(:player_one) { current_player.instance_variable_get(:@player_one) }
+    let(:player_two) { current_player.instance_variable_get(:@player_two) }
+
+    context 'on turn one' do
+      it 'the current player is player one' do
+        turn = 1
+        current_player = turn.odd? ? player_one : player_two
+        expect(current_player).to eq(player_one)
+      end
+    end
+
+    context 'on turn six' do
+      it 'the current player is player two' do
+        turn = 6
+        current_player = turn.odd? ? player_one : player_two
+        expect(current_player).to eq(player_two)
+      end
+    end
+  end
+
   describe '#play' do
   end
 
@@ -36,8 +58,5 @@ describe Game do
   end
 
   describe 'draw' do
-  end
-
-  describe '#final_message' do
   end
 end

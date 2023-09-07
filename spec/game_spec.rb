@@ -51,6 +51,33 @@ describe Game do
     end
   end
 
+  describe '#space_available?' do
+    subject(:column_space) { described_class.new }
+    let(:board) { column_space.instance_variable_get(:@board) }
+
+    context 'when column 3 is full' do
+      before do
+        board.board[0][3] = 'red_token'
+      end
+
+      it 'is falsy' do
+        space = column_space.space_available?(3)
+        expect(space).to be_falsy
+      end
+    end
+
+    context 'when column 2 has space' do
+      before do
+        board.board[0][2] = ' ● '
+      end
+
+      it 'returns true' do
+        space = column_space.space_available?(2)
+        expect(space).to be true
+      end
+    end
+  end
+
   describe '#board_full' do
     subject(:full_game_board) { described_class.new }
 

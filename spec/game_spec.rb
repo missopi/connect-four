@@ -11,16 +11,16 @@ describe Game do
     context 'on turn one' do
       it 'the current player is player one' do
         turn = 1
-        current_player = turn.odd? ? player_one : player_two
-        expect(current_player).to eq(player_one)
+        player = current_player.assign_current_player(turn)
+        expect(player).to eq(player_one)
       end
     end
 
     context 'on turn six' do
       it 'the current player is player two' do
         turn = 6
-        current_player = turn.odd? ? player_one : player_two
-        expect(current_player).to eq(player_two)
+        player = current_player.assign_current_player(turn)
+        expect(player).to eq(player_two)
       end
     end
   end
@@ -51,12 +51,22 @@ describe Game do
     end
   end
 
-  describe 'game_over?' do
+  describe '#board_full' do
+    subject(:full_game_board) { described_class.new }
+
+    before do
+      allow(full_game_board).to receive(:puts)
+    end
+
+    context 'on turn 42' do
+      it 'the board is full' do
+        turn = 42
+        full_board = full_game_board.board_full(turn)
+        expect(full_board).to be true
+      end
+    end
   end
 
-  describe 'wim' do
-  end
-
-  describe 'draw' do
+  describe '#game_over?' do
   end
 end

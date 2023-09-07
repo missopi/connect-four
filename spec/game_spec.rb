@@ -43,7 +43,7 @@ describe Game do
     end
 
     context 'when a player chooses column 10' do
-      it 'to be invalid' do
+      it 'is invalid' do
         choice = 10
         result = valid_game_move.valid_move?(choice)
         expect(result).to be_falsy
@@ -95,5 +95,19 @@ describe Game do
   end
 
   describe '#game_over?' do
+    subject(:game_win) { described_class.new }
+    let(:board) { game_win.instance_variable_get(:@board) }
+    let(:player) { instance_double(Player, name: 'Sophie', token: 'red_token') }
+
+    context 'when the game is over' do
+      before do
+        allow(board).to receive(:win).and_return(true)
+      end
+
+      it 'congratulates winner' do
+        expect(game_win).to receive(:puts).with("\nCongratulations Sophie, you won!!")
+        game_win.game_over?(player)
+      end
+    end
   end
 end

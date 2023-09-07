@@ -8,10 +8,10 @@ require 'colorize'
 class Game
   attr_accessor :board, :name, :token
 
-  def initialize
+  def initialize(turn = 1)
     @board = Board.new
     @token = [board.red_token, board.yellow_token]
-    @turn = 0
+    @turn = turn
   end
 
   def instructions
@@ -31,8 +31,8 @@ class Game
     Player.new(name, player_token)
   end
 
-  def assign_current_player
-    @turn.odd? ? @player_one : @player_two
+  def assign_current_player(turn)
+    turn.odd? ? @player_one : @player_two
   end
 
   def play
@@ -53,7 +53,11 @@ class Game
   def space_available?(player_input)
   end
 
-  def board_full
+  def board_full(turn)
+    return unless turn == 42
+
+    puts "\nThe board is full, it's a draw!"
+    true
   end
 
   def game_over?

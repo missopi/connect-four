@@ -43,7 +43,7 @@ class Game
 
   def player_input(current_player)
     puts "\n#{current_player.name} choose a column from 1 - 7 to drop your token"
-    player_input = gets.to_i - 1
+    gets.to_i - 1
   end
 
   def valid_move?(player_input)
@@ -51,6 +51,7 @@ class Game
   end
 
   def space_available?(player_input)
+    return true if @board.board[0][player_input] == ' ● '
   end
 
   def board_full(turn)

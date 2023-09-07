@@ -29,6 +29,7 @@ describe Game do
   end
 
   describe '#player_turn' do
+    subject(:game_turn) { described_class.new }
   end
 
   describe '#valid_move' do
@@ -90,6 +91,14 @@ describe Game do
         turn = 42
         full_board = full_game_board.board_full(turn)
         expect(full_board).to be true
+      end
+    end
+
+    context 'on turn 25' do
+      it 'the board is not full' do
+        turn = 25
+        full_board = full_game_board.board_full(turn)
+        expect(full_board).to be_falsy
       end
     end
   end

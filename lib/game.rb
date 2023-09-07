@@ -61,6 +61,14 @@ class Game
     true
   end
 
-  def game_over?
+  def game_over?(player)
+    6.times do |row|
+      7.times do |column|
+        if @board.win(row, column, player.token)
+          puts "\nCongratulations #{player.name}, you won!!"
+          return true
+        end
+      end
+    end
   end
 end

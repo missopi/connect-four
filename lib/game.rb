@@ -8,7 +8,7 @@ require 'colorize'
 class Game
   attr_accessor :board, :name, :token
 
-  def initialize(turn = 1)
+  def initialize(turn = 0)
     @board = Board.new
     @token = [board.red_token, board.yellow_token]
     @turn = turn
@@ -41,10 +41,10 @@ class Game
     @player_one = create_player(1)
     @player_two = create_player(2)
     loop do
-      current_player = assign_current_player(@count)
-      @count += 1
+      @turn += 1
+      current_player = assign_current_player(@turn)
       player_turn(current_player)
-      break if game_over?(current_player) == true || board_full(@count) == true
+      break if game_over?(current_player) == true || board_full(@turn) == true
     end
   end
 

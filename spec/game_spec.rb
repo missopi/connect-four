@@ -30,6 +30,23 @@ describe Game do
 
   describe '#player_turn' do
     subject(:game_turn) { described_class.new }
+    let(:board) { game_turn.instance_variable_get(:@board) }
+    let(:player) { instance_double(Player, name: 'Sophie', token: 'red_token') }
+
+    context 'when a player chooses a column that is full' do
+      before do
+        allow(board).to receive(:update_board)
+        allow(board).to receive(:available_row)
+        allow(game_turn).to receive(:player_input)
+        allow(game_turn).to receive(:valid_move?).and_return(true)
+        allow(game_turn).to receive(:space_available?).and_return(false)
+      end
+
+      it 'they receive an error message' do
+        expect(game_turn).to receive(:puts).with('That column is full, please choose another')
+        game_turn.player_turn(player)
+      end
+    end
   end
 
   describe '#valid_move' do

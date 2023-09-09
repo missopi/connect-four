@@ -38,7 +38,15 @@ class Game
   def play
   end
 
-  def player_turn
+  def player_turn(player)
+    input = player_input(player)
+    if valid_move?(input) && space_available?(input)
+      @board.update_board(@board.available_row(input), input, player.token)
+    elsif valid_move?(input)
+      puts 'That column is full, please choose another'
+      input = gets.to_i - 1
+      @board.update_board(@board.available_row(input), input, player.token)
+    end
   end
 
   def player_input(current_player)

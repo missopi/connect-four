@@ -25,9 +25,6 @@ describe Game do
     end
   end
 
-  describe '#play' do
-  end
-
   describe '#player_turn' do
     subject(:game_turn) { described_class.new }
     let(:board) { game_turn.instance_variable_get(:@board) }

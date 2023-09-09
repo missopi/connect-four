@@ -36,6 +36,16 @@ class Game
   end
 
   def play
+    instructions
+    @board.display_board
+    @player_one = create_player(1)
+    @player_two = create_player(2)
+    loop do
+      current_player = assign_current_player(@count)
+      @count += 1
+      player_turn(current_player)
+      break if game_over?(current_player) == true || board_full(@count) == true
+    end
   end
 
   def player_turn(player)

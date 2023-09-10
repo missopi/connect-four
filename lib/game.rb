@@ -54,8 +54,7 @@ class Game
       @board.update_board(@board.available_row(input), input, player.token)
     elsif valid_move?(input)
       puts 'That column is full, please choose another'
-      input = gets.to_i - 1
-      @board.update_board(@board.available_row(input), input, player.token)
+      player_turn(player)
     end
   end
 
